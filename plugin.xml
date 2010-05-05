@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+        <name>
+                <lang name="default">Sitemap</lang>
+        </name>
+        <author>
+                <lang name="default">Dmitriy Gadeev, Stepan Tanasiychuk</lang>
+                <lang name="russian">Дмитрий Гадеев, Степан Танасийчук</lang>
+                <lang name="ukrainian">Дмитро Гадєєв, Степан Танасійчук</lang>
+        </author>
+        <homepage>http://www.assembla.com/spaces/ls-sitemap/team</homepage>
+        <version>0.1.0</version>
+        <requires>
+                <livestreet>0.4.0</livestreet>
+                <plugins>
+                </plugins>
+        </requires>
+        <description>
+                <lang name="default">Sitemap generator.</lang>
+        </description>
+        <delegate>
+                <module></module>
+                <action></action>
+                <template></template>
+                <entity></entity>
+        </delegate>
+</plugin>
