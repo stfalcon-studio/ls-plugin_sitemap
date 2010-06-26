@@ -3,7 +3,7 @@
 /**
  * Маппер для плагина генерации sitemap
  */
-class PluginSitemap_Mapper_Sitemap extends Mapper {
+class PluginSitemap_ModuleSitemap_MapperSitemap extends Mapper {
 
         /**
          * Максимальная айдишка для коллективных блогов
@@ -55,6 +55,8 @@ class PluginSitemap_Mapper_Sitemap extends Mapper {
                                 MAX(pt.topic_id)
                         FROM
                                 `' . Config::Get('db.table.topic') . '` pt
+                        WHERE
+                                pt.topic_publish = 1
                         ';
 		
 		return $this->oDb->selectCell($sql);
@@ -73,6 +75,7 @@ class PluginSitemap_Mapper_Sitemap extends Mapper {
                                 `' . Config::Get('db.table.topic') . '` pt,
                                 `' . Config::Get('db.table.blog') . '` pb
                         WHERE
+                                pt.topic_publish = 1 AND
                                 pb.blog_id = pt.blog_id AND
                                 pt.topic_id > ?d AND
                                 pt.topic_id <= ?d

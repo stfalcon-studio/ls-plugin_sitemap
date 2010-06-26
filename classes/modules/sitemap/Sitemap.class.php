@@ -1,11 +1,11 @@
 <?php
 
-require_once('mapper/Sitemap.mapper.class.php');
+//require_once('mapper/Sitemap.mapper.class.php');
 
 /**
  * Модуль для плагина генерации Sitemap
  */
-class PluginSitemap_Sitemap extends Module {
+class PluginSitemap_ModuleSitemap extends Module {
 
         /**
          * Маппер
@@ -19,7 +19,7 @@ class PluginSitemap_Sitemap extends Module {
          * @return void
 	 */
 	public function Init() {				
-		$this->oMapper=new PluginSitemap_Mapper_Sitemap($this->Database_GetConnect());
+		$this->oMapper = Engine::GetMapper(__CLASS__);
 	}
 	
 	/**
