@@ -9,9 +9,9 @@
                 <lang name="ukrainian">Дмитро Гадєєв, Степан Танасійчук</lang>
         </author>
         <homepage>http://www.assembla.com/spaces/ls-sitemap/team</homepage>
-        <version>0.1.0</version>
+        <version>0.1.1</version>
         <requires>
-                <livestreet>0.4.0</livestreet>
+                <livestreet>0.4.1</livestreet>
                 <plugins>
                 </plugins>
         </requires>
