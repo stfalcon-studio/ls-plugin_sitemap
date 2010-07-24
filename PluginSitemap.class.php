@@ -1,5 +1,12 @@
 <?php
 /**
+ * Запрещаем напрямую через браузер обращение к этому файлу.
+ */
+if (!class_exists('Plugin')) {
+	die('Hacking attemp!');
+}
+
+/**
  * Плагин для генерации sitemap
  *
  * @author Stepan Tanasiychuk <http://stfalcon.com>
