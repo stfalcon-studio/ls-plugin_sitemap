@@ -8,20 +8,14 @@
                 <lang name="russian">Дмитрий Гадеев, Степан Танасийчук</lang>
                 <lang name="ukrainian">Дмитро Гадєєв, Степан Танасійчук</lang>
         </author>
-        <homepage>http://www.assembla.com/spaces/ls-sitemap/team</homepage>
-        <version>0.1.1</version>
+        <homepage>http://www.assembla.com/spaces/ls-sitemap/wiki</homepage>
+        <version>0.2</version>
         <requires>
-                <livestreet>0.4.1</livestreet>
-                <plugins>
-                </plugins>
+                <livestreet>0.4.2</livestreet>
         </requires>
         <description>
-                <lang name="default">Sitemap generator.</lang>
+                <lang name="default">Sitemap generator</lang>
+                <lang name="russian">Sitemap генератор</lang>
+                <lang name="ukrainian">Sitemap генератор</lang>
         </description>
-        <delegate>
-                <module></module>
-                <action></action>
-                <template></template>
-                <entity></entity>
-        </delegate>
 </plugin>

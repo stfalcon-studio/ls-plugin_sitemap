@@ -14,6 +14,24 @@ if (!class_exists('Plugin')) {
 class PluginSitemap extends Plugin {
 
         /**
+         * Указанные в массивы делегаты будут переданы движку автоматически
+         * перед инициализацией плагина
+         */
+        protected $aInherits = array(
+//        protected $aDelegates = array(
+//                'module' => array(
+//                        'ModuleTopic' => 'PluginSitemap_ModuleTopic',
+//                        'ModuleBlog' => 'PluginSitemap_ModuleBlog',
+//                        'ModuleUser' => 'PluginSitemap_ModuleUser',
+//                ),
+                'entity' => array(
+                        'ModuleBlog_EntityBlog' => 'PluginSitemap_ModuleBlog_EntityBlog',
+                        'ModuleTopic_EntityTopic' => 'PluginSitemap_ModuleTopic_EntityTopic',
+                        'ModuleUser_EntityUser' => 'PluginSitemap_ModuleUser_EntityUser',
+                ),
+        );
+        
+        /**
          * Активация плагина
          *
          * @return boolean
@@ -28,6 +46,11 @@ class PluginSitemap extends Plugin {
          * @return void
          */
 	public function Init() {
+                // @todo в LS r986 эти пути добавили в ядро движка
+                // http://trac.lsdev.ru/livestreet/changeset/986
+
+                // путь к папке темплейтов плагина
+                $this->Viewer_Assign('sTemplateWebPathPluginSitemap', Plugin::GetTemplateWebPath(__CLASS__));
 	}
 
         /**

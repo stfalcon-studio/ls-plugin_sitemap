@@ -1,0 +1,17 @@
+УСТАНОВКА
+---------
+
+Есть несколько вариантов установки плагина:
+
+1. Скачать архив плагина в каталоге LiveStreet и распаковать в директории plugins
+вашего сайта (в результате должен получиться путь /plugins/sitemap/)
+2. В директории plugins вашего сайта выполнить команду:
+$ svn export http://subversion.assembla.com/svn/ls-sitemap/trunk sitemap
+
+
+После чего необходимо перейти на страницу http://example.com/admin/plugins
+(вместо example.com указывайте адрес своего сайта) и активировать плагин Sitemap
+Теперь сайтмап должен быть доступен по адресу http://example.com/sitemap.xml
+Сообщить поисковым системам о sitemap можно вручную (Google Webmaster Tolis,
+Yandex Вебмастер) или добавив в robots.txt конструкцию:
+Sitemap: http://example.com/sitemap.xml
