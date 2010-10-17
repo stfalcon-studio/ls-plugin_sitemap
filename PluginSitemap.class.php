@@ -20,9 +20,9 @@ class PluginSitemap extends Plugin {
      */
     protected $aInherits = array(
         'entity' => array(
-            'ModuleBlog_EntityBlog' => 'PluginSitemap_Blog_EntityBlog',
-            'ModuleTopic_EntityTopic' => 'PluginSitemap_Topic_EntityTopic',
-            'ModuleUser_EntityUser' => 'PluginSitemap_User_EntityUser',
+            'ModuleBlog_EntityBlog' => 'PluginSitemap_ModuleBlog_EntityBlog',
+            'ModuleTopic_EntityTopic' => 'PluginSitemap_ModuleTopic_EntityTopic',
+            'ModuleUser_EntityUser' => 'PluginSitemap_ModuleUser_EntityUser',
         ),
     );
 
