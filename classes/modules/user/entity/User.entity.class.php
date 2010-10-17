@@ -1,6 +1,6 @@
 <?php
 
-class PluginSitemap_ModuleUser_EntityUser extends ModuleUser_EntityUser {
+class PluginSitemap_ModuleUser_EntityUser extends PluginSitemap_Inherit_ModuleUser_EntityUser {
 
     /**
      * Get date of last user modification

@@ -1,6 +1,6 @@
 <?php
 
-class PluginSitemap_ModuleBlog_EntityBlog extends ModuleBlog_EntityBlog {
+class PluginSitemap_ModuleBlog_EntityBlog extends PluginSitemap_Inherit_ModuleBlog_EntityBlog {
 
     /**
      * Get blog add date
