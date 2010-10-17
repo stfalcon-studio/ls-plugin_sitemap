@@ -1,7 +1,5 @@
 <?php
 
-//require_once('mapper/Sitemap.mapper.class.php');
-
 /**
  * Модуль для плагина генерации Sitemap
  */
@@ -38,15 +36,6 @@ class PluginSitemap_ModuleSitemap extends Module {
     }
 
     /**
-     * Test for active plugin
-     * @param string $sName
-     * @return boolean
-     */
-    public function isActivePlugin($sName) {
-        return in_array($sName, $this->Plugin_GetActivePlugins());
-    }
-
-    /**
      * Возвращает массив с данными для генерации sitemap'а
      *
      * @param string $sUrl
@@ -64,122 +53,67 @@ class PluginSitemap_ModuleSitemap extends Module {
         );
     }
 
-//    /**
-//     * Number of gallery categories
-//     *
-//     * @return integer
-//     */
-//    public function getNumberOfGalleryCategories() {
-//        return $this->oMapper->getNumberOfGalleryCategories();
-//    }
-//
-//    /**
-//     * List of gallery categories
-//     *
-//     * @param integer $from
-//     * @return array
-//     */
-//    public function getAllGalleryCategoriesList($from) {
-//        $cacheKey = "sitemap_gallery_categories_{$from}_" . Config::Get('plugin.sitemap.objects_per_page');
-//        if (false === ($data = $this->Cache_Get($cacheKey))) {
-//            if ($data = $this->oMapper->getAllGalleryCategoriesList($from)) {
-//                $this->Cache_Set($data, $cacheKey, array('gallery_category_new'), 60 * 30);
-//            }
-//        }
-//        return $data;
-//    }
-//
-//    /**
-//     * Number of gallery tags
-//     *
-//     * @return integer
-//     */
-//    public function getNumberOfGalleryTags() {
-//        return $this->oMapper->getNumberOfGalleryTags();
-//    }
-//
-//    /**
-//     * List of gallery tags
-//     *
-//     * @param integer $from
-//     * @return array
-//     */
-//    public function getAllGalleryTagsList($from) {
-//        $cacheKey = "sitemap_gallery_tags_{$from}_" . Config::Get('plugin.sitemap.objects_per_page');
-//        if (false === ($data = $this->Cache_Get($cacheKey))) {
-//            if ($data = $this->oMapper->getAllGalleryTagsList($from)) {
-//                $this->Cache_Set($data, $cacheKey, array('gallery_tag_new'), 60 * 30);
-//            }
-//        }
-//        return $data;
-//    }
-//
+    /**
+     * Этот метод переопределяется в других плагинах и добавляет их наборы данных
+     * к основному набору
+     *
+     * @return array
+     */
+    public function getExternalCounters() {
+        return array();
+    }
 
-//
-//    /**
-//     * Number of photos in all albums
-//     *
-//     * @return integer
-//     */
-//    public function getNumberOfGalleryAlbumsPhotos() {
-//        return $this->oMapper->getNumberOfGalleryAlbumsPhotos();
-//    }
-//
-//    /**
-//     * List of albums photos
-//     *
-//     * @param integer $from
-//     * @return array
-//     */
-//    public function getAllGalleryAlbumsPhotosList($from) {
-//        $cacheKey = "sitemap_photos_{$from}_" . Config::Get('plugin.sitemap.objects_per_page');
-//
-//        if (false === ($data = $this->Cache_Get($cacheKey))) {
-//            if ($data = $this->oMapper->getAllGalleryAlbumsPhotosList($from)) {
-//                $this->Cache_Set($data, $cacheKey, array('gallery_photo_new'), 60 * 30);
-//            }
-//        }
-//        return $data;
-//    }
-//
-//    /**
-//     * Number of photos in all categories
-//     *
-//     * @return integer
-//     */
-//    public function getNumberOfGalleryCategoriesPhotos() {
-//        return $this->oMapper->getNumberOfGalleryCategoriesPhotos();
-//    }
-//
-//    /**
-//     * List of albums photos
-//     *
-//     * @param integer $from
-//     * @return array
-//     */
-//    public function getAllGalleryCategoriesPhotosList($from) {
-//        $cacheKey = "sitemap_categories_photos_{$from}_" . Config::Get('plugin.sitemap.objects_per_page');
-//
-//        if (false === ($data = $this->Cache_Get($cacheKey))) {
-//            if ($data = $this->oMapper->getAllGalleryCategoriesPhotosList($from)) {
-//                $this->Cache_Set($data, $cacheKey, array('gallery_category_photo_new'), 60 * 30);
-//            }
-//        }
-//        return $data;
-//    }
+    /**
+     * Данные для Sitemap общих страниц сайта
+     *
+     * @param integer $iCurrPage
+     * @return array
+     */
+    public function getDataForGeneral($iCurrPage) {
+        $aData = array();
+        $aData[] = $this->GetDataForSitemapRow(
+            Config::Get('path.root.web'),
+            time(),
+            Config::Get('plugin.sitemap.general.mainpage.sitemap_priority'),
+            Config::Get('plugin.sitemap.general.mainpage.sitemap_changefreq')
+        );
+        $aData[] = $this->GetDataForSitemapRow(
+            Config::Get('path.root.web') . '/comments/',
+            null, //time(),
+            Config::Get('plugin.sitemap.general.comments.sitemap_priority'),
+            Config::Get('plugin.sitemap.general.comments.sitemap_changefreq')
+        );
+        return $aData;
+    }
 
-//    /**
-//     * Add NiceUrl plugin url to data
-//     * @param array $aData
-//     * @return array
-//     */
-//    public function NiceUrl_Url($aData) {
-//        $this->Viewer_Assign('isPlugin_NiceUrl', true);
-//        foreach ($aData as $iK => $aRow) {
-//            $oTopic = $this->Topic_GetTopicById($aRow['topic_id']);
-//            $aData[$iK]['nice_url'] = $this->PluginNiceurl_ModuleNiceurl_BuildUrlForTopic($oTopic);
-//        }
-//        return $aData;
-//    }
+    /**
+     * Данные для Sitemap открытых коллективных блогов
+     *
+     * @param integer $iCurrPage
+     * @return array
+     */
+    public function getDataForBlogs($iCurrPage) {
+        return $this->PluginSitemap_Blog_GetOpenCollectiveBlogsForSitemap($iCurrPage);
+    }
+
+    /**
+     * Данные для Sitemap опубликованных топиков
+     *
+     * @param integer $iCurrPage
+     * @return void
+     */
+    public function getDataForTopics($iCurrPage) {
+        return $this->PluginSitemap_Topic_GetOpenTopicsForSitemap($iCurrPage);
+    }
+
+    /**
+     * Данные для Sitemap пользовательских профилей, топиков и комментариев
+     *
+     * @param integer $iCurrPage
+     * @return void
+     */
+    public function getDataForUsers($iCurrPage) {
+        return $this->PluginSitemap_User_GetUsersForSitemap($iCurrPage);
+    }
 
 }

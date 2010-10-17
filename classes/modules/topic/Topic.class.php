@@ -53,7 +53,12 @@ class PluginSitemap_ModuleTopic extends Module {
         $sCacheKey = "sitemap_topics_{$iCurrPage}_" . Config::Get('plugin.sitemap.objects_per_page');
 
         if (false === ($aData = $this->Cache_Get($sCacheKey))) {
-            $aTopics = $this->Topic_GetTopicsByFilter($this->_getFilterForTopics(), $iCurrPage, Config::Get('plugin.sitemap.objects_per_page'), array('blog' => array()));
+            $aTopics = $this->Topic_GetTopicsByFilter(
+                    $this->_getFilterForTopics(),
+                    $iCurrPage,
+                    Config::Get('plugin.sitemap.objects_per_page'),
+                    array('blog' => array())
+            );
 
             $aData = array();
             foreach ($aTopics['collection'] as $oTopic) {
@@ -67,7 +72,7 @@ class PluginSitemap_ModuleTopic extends Module {
 
             // тег 'blog_update' т.к. при редактировании блога его тип может измениться
             // с открытого на закрытый или наоборот
-            $this->Cache_Set($aData, $sCacheKey, array('topic_new', 'blog_update'), Config::Get('plugin.sitemap.topics.cache_lifetime')); // @todo в конфиг
+            $this->Cache_Set($aData, $sCacheKey, array('topic_new', 'blog_update'), Config::Get('plugin.sitemap.topics.cache_lifetime'));
         }
 
         return $aData;

@@ -3,7 +3,7 @@
 // Добавляем rewrite rules для sitemap'ов в роутер
 $aRouterUri = Config::Get('router.uri');
 $aRouterUri['/^sitemap\.xml/i'] = "sitemap";
-$aRouterUri['/^sitemap_(\w+)_(\d+)\.xml/i'] = "sitemap/\\1/sitemap_\\2.xml";
+$aRouterUri['/^sitemap_(\w+)_(\d+)\.xml/i'] = "sitemap/sitemap/\\1/\\2";
 Config::Set('router.uri', $aRouterUri);
 
 // Добавляем экшен плагина в роутер
@@ -63,23 +63,6 @@ $config['users'] = array (
     // Топики пользователя
     'my' => array (
         'sitemap_priority' => '0.8',
-        'sitemap_changefreq' => 'weekly'
-    ),
-);
-
-// @todo refact вынести этот функционал в целевые плагины
-// Плагин "Pages" (Статические страницы)
-$config['pages'] = array (
-    'cache_lifetime' => 60 * 60 * 24, // сутки
-    'sitemap_priority' => '0.8',
-    'sitemap_changefreq' => 'monthly'
-);
-// Плагин "Gallery" (Галерея)
-$config['gallery'] = array (
-    'cache_lifetime' => 60 * 60 * 8, // 8 часов
-    // Альбомы пользователей
-    'albums' => array (
-        'sitemap_priority' => '0.7',
         'sitemap_changefreq' => 'weekly'
     ),
 );
