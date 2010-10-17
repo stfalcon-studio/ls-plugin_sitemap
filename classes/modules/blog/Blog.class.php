@@ -43,14 +43,14 @@ class PluginSitemap_ModuleBlog extends Module {
         if (false === ($aData = $this->Cache_Get($sCacheKey))) {
             $iCount = 0;
             $aIdBlogs = $this->oMapperBlog->getIdCollectiveBlogs($iCount, $iCurrPage, Config::Get('plugin.sitemap.objects_per_page'));
-            $aBlogs = $this->ModuleBlog_GetBlogsByArrayId($aIdBlogs);
+            $aBlogs = $this->Blog_GetBlogsByArrayId($aIdBlogs);
 
             $aData = array();
             foreach ($aBlogs as $oBlog) {
                 // @todo временем последнего изменения блога должно
                 // быть время его обновления (публикация последнего топика),
                 // а не время создания/редактирования самого блога
-                $aData[] = $this->PluginSitemap_ModuleSitemap_GetDataForSitemapRow(
+                $aData[] = $this->PluginSitemap_Sitemap_GetDataForSitemapRow(
                         $oBlog->getUrlFull(),
                         $oBlog->getDateLastMod(),
                         Config::Get('plugin.sitemap.blogs.sitemap_priority'),

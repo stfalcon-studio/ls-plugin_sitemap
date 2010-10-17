@@ -62,7 +62,7 @@ class PluginSitemap_ModuleTopic extends Module {
 
             $aData = array();
             foreach ($aTopics['collection'] as $oTopic) {
-                $aData[] = $this->PluginSitemap_ModuleSitemap_GetDataForSitemapRow(
+                $aData[] = $this->PluginSitemap_Sitemap_GetDataForSitemapRow(
                         $oTopic->getUrl(),
                         $oTopic->getDateLastMod(),
                         Config::Get('plugin.sitemap.topics.sitemap_priority'),

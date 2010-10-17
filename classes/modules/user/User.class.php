@@ -50,7 +50,7 @@ class PluginSitemap_ModuleUser extends Module {
             $aData = array();
             foreach ($aUsers as $oUser) {
                 // профиль пользователя
-                $aData[] = $this->PluginSitemap_ModuleSitemap_GetDataForSitemapRow(
+                $aData[] = $this->PluginSitemap_Sitemap_GetDataForSitemapRow(
                         $oUser->getUserWebPath(),
                         $oUser->getDateLastMod(),
                         Config::Get('plugin.sitemap.users.profile.sitemap_priority'),
@@ -58,7 +58,7 @@ class PluginSitemap_ModuleUser extends Module {
                 );
 
                 // публикации пользователя
-                $aData[] = $this->PluginSitemap_ModuleSitemap_GetDataForSitemapRow(
+                $aData[] = $this->PluginSitemap_Sitemap_GetDataForSitemapRow(
                         $oUser->getUserTopicsWebPath(),
                         // @todo временем изменения страницы публикаций должно быть время последней публикации пользователя
                         null,
@@ -67,7 +67,7 @@ class PluginSitemap_ModuleUser extends Module {
                 );
 
                 // комментарии пользователя
-                $aData[] = $this->PluginSitemap_ModuleSitemap_GetDataForSitemapRow(
+                $aData[] = $this->PluginSitemap_Sitemap_GetDataForSitemapRow(
                         $oUser->getUserCommentsWebPath(),
                         $oUser->getDateCommentLast(),
                         Config::Get('plugin.sitemap.users.comments.sitemap_priority'),
