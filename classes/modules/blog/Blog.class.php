@@ -49,10 +49,9 @@ class PluginSitemap_ModuleBlog extends Module {
             foreach ($aBlogs as $oBlog) {
                 // @todo временем последнего изменения блога должно
                 // быть время его обновления (публикация последнего топика),
-                // а не время создания/редактирования самого блога
                 $aData[] = $this->PluginSitemap_Sitemap_GetDataForSitemapRow(
                         $oBlog->getUrlFull(),
-                        $oBlog->getDateLastMod(),
+                        null,
                         Config::Get('plugin.sitemap.blogs.sitemap_priority'),
                         Config::Get('plugin.sitemap.blogs.sitemap_changefreq')
                 );
