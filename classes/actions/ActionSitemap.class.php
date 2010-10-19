@@ -31,14 +31,17 @@ class PluginSitemap_ActionSitemap extends ActionPlugin {
      * @return void
      */
     public function eventSitemap() {
-        $sType = ucfirst($this->GetParam(0));
-        $iCurrPage = (int) $this->GetParam(1);
 
+        $iCurrPage = (int) $this->GetParam(1);
+        $aType = explode('_', $this->GetParam(0));
+        $sName='';
+        foreach ($aType as $val)
+            $sName.=ucfirst($val);
         $aData = call_user_func_array(
-                array($this, 'PluginSitemap_Sitemap_GetDataFor'. $sType), 
-                array($iCurrPage)
+                        array($this, 'PluginSitemap_Sitemap_GetDataFor' . $sName),
+                        array($iCurrPage)
         );
-        
+
         $this->_displaySitemap($aData);
     }
 
@@ -71,7 +74,6 @@ class PluginSitemap_ActionSitemap extends ActionPlugin {
 //         * Вызов хуков
 //         */
 //        Engine::getInstance()->_CallModule('Hook_Run',array('sitemap_index_counters',&$aCounters));
-
         // Генерируем ссылки на конечные Sitemap'ы для Sitemap Index
         $aData = array();
         foreach ($aCounters as $sType => $iCount) {
