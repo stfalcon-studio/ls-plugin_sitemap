@@ -76,11 +76,14 @@ class PluginSitemap_ActionSitemap extends ActionPlugin {
 //        Engine::getInstance()->_CallModule('Hook_Run',array('sitemap_index_counters',&$aCounters));
         // Генерируем ссылки на конечные Sitemap'ы для Sitemap Index
         $aData = array();
+
         foreach ($aCounters as $sType => $iCount) {
-            for ($i = 1; $i <= $iCount; ++$i) {
-                $aData[] = array(
-                    'loc' => Config::Get('path.root.web') . '/sitemap_' . $sType . '_' . $i . '.xml'
-                );
+            if ($iCount > 0) {
+                for ($i = 1; $i <= $iCount; ++$i) {
+                    $aData[] = array(
+                        'loc' => Config::Get('path.root.web') . '/sitemap_' . $sType . '_' . $i . '.xml'
+                    );
+                }
             }
         }
 
