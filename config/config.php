@@ -3,7 +3,6 @@
 // Добавляем rewrite rules для sitemap'ов в роутер
 $aRouterUri = Config::Get('router.uri');
 $aRouterUri['/^sitemap\.xml/i'] = "sitemap";
-$aRouterUri['/^sitemap_(uk|ru|en)_(\w+)_(\d+)\.xml/i'] = "sitemap/sitemap/\\2/\\3/\\1";
 $aRouterUri['/^sitemap_(\w+)_(\d+)\.xml/i'] = "sitemap/sitemap/\\1/\\2";
 Config::Set('router.uri', $aRouterUri);
 

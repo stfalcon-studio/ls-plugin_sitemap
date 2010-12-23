@@ -32,7 +32,7 @@ class PluginSitemap_ActionSitemap extends ActionPlugin {
      */
     public function eventSitemap() {
 
-        $sLang = $this->GetParam(2) ? $this->GetParam(2) : null;
+//        $sLang = $this->GetParam(2) ? $this->GetParam(2) : null;
         $iCurrPage = (int) $this->GetParam(1);
         $aType = explode('_', $this->GetParam(0));
         $sName='';
@@ -40,7 +40,8 @@ class PluginSitemap_ActionSitemap extends ActionPlugin {
             $sName.=ucfirst($val);
         $aData = call_user_func_array(
                         array($this, 'PluginSitemap_Sitemap_GetDataFor' . $sName),
-                        array($iCurrPage, $sLang)
+                        array($iCurrPage)
+//                        array($iCurrPage, $sLang)
         );
 
         $this->_displaySitemap($aData);

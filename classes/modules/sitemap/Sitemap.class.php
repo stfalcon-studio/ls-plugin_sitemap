@@ -92,8 +92,7 @@ class PluginSitemap_ModuleSitemap extends Module {
      * @param integer $iCurrPage
      * @return array
      */
-    public function getDataForBlogs($iCurrPage, $sLang = null) {
-        Router::setLang($sLang);
+    public function getDataForBlogs($iCurrPage) {
         return $this->PluginSitemap_Blog_GetOpenCollectiveBlogsForSitemap($iCurrPage);
     }
 
@@ -103,8 +102,7 @@ class PluginSitemap_ModuleSitemap extends Module {
      * @param integer $iCurrPage
      * @return void
      */
-    public function getDataForTopics($iCurrPage, $sLang = null) {
-        Router::setLang($sLang);
+    public function getDataForTopics($iCurrPage) {
         return $this->PluginSitemap_Topic_GetOpenTopicsForSitemap($iCurrPage);
     }
 
@@ -114,8 +112,7 @@ class PluginSitemap_ModuleSitemap extends Module {
      * @param integer $iCurrPage
      * @return void
      */
-    public function getDataForUsers($iCurrPage, $sLang = null) {
-        Router::setLang($sLang);
+    public function getDataForUsers($iCurrPage) {
         return $this->PluginSitemap_User_GetUsersForSitemap($iCurrPage);
     }
 
