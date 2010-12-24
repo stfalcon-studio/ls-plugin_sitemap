@@ -75,6 +75,15 @@ class PluginSitemap_ModuleSitemap extends Module {
     }
 
     /**
+     * Генерирует преффикс для кеша
+     *
+     * @return string
+     */
+    public function getCacheIdPrefix() {
+        return '';
+    }
+
+    /**
      * Данные для Sitemap общих страниц сайта
      *
      * @param integer $iCurrPage

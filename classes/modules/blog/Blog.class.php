@@ -38,7 +38,8 @@ class PluginSitemap_ModuleBlog extends Module {
      * @return array
      */
     public function getOpenCollectiveBlogsForSitemap($iCurrPage = 0) {
-        $sCacheKey = "sitemap_blogs_{$iCurrPage}_" . Config::Get('plugin.sitemap.objects_per_page');
+        $sCacheKey = $this->PluginSitemap_Sitemap_GetCacheIdPrefix()
+                     . "sitemap_blogs_{$iCurrPage}_" . Config::Get('plugin.sitemap.objects_per_page');
 
         if (false === ($aData = $this->Cache_Get($sCacheKey))) {
             $iCount = 0;

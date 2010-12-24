@@ -41,7 +41,8 @@ class PluginSitemap_ModuleUser extends Module {
         // в sitemap пользователей в 3ри раза больше ссылок
         $iPerPage = floor(Config::Get('plugin.sitemap.objects_per_page') / 3);
 
-        $sCacheKey = "sitemap_users_{$iCurrPage}_{$iPerPage}";
+        $sCacheKey = $this->PluginSitemap_Sitemap_GetCacheIdPrefix()
+                     . "sitemap_users_{$iCurrPage}_{$iPerPage}";
 
         if (false === ($aData = $this->Cache_Get($sCacheKey))) {
             $aUsersId = $this->oMapper->getUsersId($iCount, $iCurrPage, $iPerPage);

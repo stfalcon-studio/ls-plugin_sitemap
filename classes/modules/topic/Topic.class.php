@@ -50,7 +50,8 @@ class PluginSitemap_ModuleTopic extends Module {
      * @return array
      */
     public function getOpenTopicsForSitemap($iCurrPage = 0) {
-        $sCacheKey = "sitemap_topics_{$iCurrPage}_" . Config::Get('plugin.sitemap.objects_per_page');
+        $sCacheKey = $this->PluginSitemap_Sitemap_GetCacheIdPrefix()
+                     . "sitemap_topics_{$iCurrPage}_" . Config::Get('plugin.sitemap.objects_per_page');
 
         if (false === ($aData = $this->Cache_Get($sCacheKey))) {
             $aTopics = $this->Topic_GetTopicsByFilter(
