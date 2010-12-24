@@ -63,6 +63,17 @@ class PluginSitemap_ModuleSitemap extends Module {
         return array();
     }
 
+
+    /**
+     * Этот метод переопределяется в других плагинах и добавляет нужные ссылки на
+     * сайтмапы к основному набору ссылок
+     *
+     * @return array
+     */
+    public function getExternalLinks() {
+        return array();
+    }
+
     /**
      * Данные для Sitemap общих страниц сайта
      *

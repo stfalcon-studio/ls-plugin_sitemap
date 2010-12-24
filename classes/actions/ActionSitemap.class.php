@@ -31,8 +31,6 @@ class PluginSitemap_ActionSitemap extends ActionPlugin {
      * @return void
      */
     public function eventSitemap() {
-
-//        $sLang = $this->GetParam(2) ? $this->GetParam(2) : null;
         $iCurrPage = (int) $this->GetParam(1);
         $aType = explode('_', $this->GetParam(0));
         $sName='';
@@ -41,7 +39,6 @@ class PluginSitemap_ActionSitemap extends ActionPlugin {
         $aData = call_user_func_array(
                         array($this, 'PluginSitemap_Sitemap_GetDataFor' . $sName),
                         array($iCurrPage)
-//                        array($iCurrPage, $sLang)
         );
 
         $this->_displaySitemap($aData);
@@ -79,14 +76,22 @@ class PluginSitemap_ActionSitemap extends ActionPlugin {
         // Генерируем ссылки на конечные Sitemap'ы для Sitemap Index
         $aData = array();
 
+        $sRootWeb = rtrim(str_replace('index/', '', Router::GetPath('index')), '/');
         foreach ($aCounters as $sType => $iCount) {
             if ($iCount > 0) {
                 for ($i = 1; $i <= $iCount; ++$i) {
                     $aData[] = array(
-                        'loc' => Config::Get('path.root.web') . '/sitemap_' . $sType . '_' . $i . '.xml'
+                        'loc' => $sRootWeb . '/sitemap_' . $sType . '_' . $i . '.xml'
                     );
                 }
             }
+        }
+
+        $aLinks = $this->PluginSitemap_Sitemap_GetExternalLinks();
+        foreach ($aLinks as $sLink) {
+            $aData[] = array(
+                'loc' => $sLink
+            );
         }
 
         $this->_displaySitemap($aData, 'sitemap_index.tpl');
