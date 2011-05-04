@@ -28,7 +28,7 @@ class PluginSitemap_ModuleTopic extends Module {
     protected function _getFilterForTopics() {
         return array(
             'blog_type' => array(
-                'open',
+                'open', 'personal',
             ),
             'topic_publish' => 1,
         );
