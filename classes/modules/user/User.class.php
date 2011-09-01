@@ -38,8 +38,8 @@ class PluginSitemap_ModuleUser extends Module {
      * @return array
      */
     public function getUsersForSitemap($iCurrPage) {
-        // в sitemap пользователей в 3ри раза больше ссылок
-        $iPerPage = floor(Config::Get('plugin.sitemap.objects_per_page') / 3);
+
+        $iPerPage = Config::Get('plugin.sitemap.users_per_page');
 
         $sCacheKey = $this->PluginSitemap_Sitemap_GetCacheIdPrefix()
                      . "sitemap_users_{$iCurrPage}_{$iPerPage}";

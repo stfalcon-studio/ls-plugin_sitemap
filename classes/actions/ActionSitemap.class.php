@@ -7,7 +7,7 @@ class PluginSitemap_ActionSitemap extends ActionPlugin {
 
     /**
      * Инициализация
-     * 
+     *
      * @return void
      */
     public function Init() {
@@ -56,7 +56,7 @@ class PluginSitemap_ActionSitemap extends ActionPlugin {
             'blogs' => (int) ceil($this->PluginSitemap_Blog_GetOpenCollectiveBlogsCount() / $iPerPage),
             'topics' => (int) ceil($this->PluginSitemap_Topic_GetOpenTopicsCount() / $iPerPage),
             // в sitemap пользователей в 3ри раза больше ссылок
-            'users' => (int) ceil($this->PluginSitemap_User_GetUsersCount() / floor($iPerPage / 3)),
+            'users' => (int) ceil($this->PluginSitemap_User_GetUsersCount() / Config::Get('plugin.sitemap.users_per_page')),
         );
 
         // Возможность сторонними плагинами добавлять свои данные в Sitemap Index

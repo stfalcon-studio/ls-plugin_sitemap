@@ -13,10 +13,11 @@ Config::Set('router.page.sitemap', 'PluginSitemap_ActionSitemap');
 $config = array();
 
 $config['objects_per_page'] = 50000; // максимальное количество ссылок на одной странице карты
+$config['users_per_page']   = 1000;    // максимальное количество пользователей на одной странице карты
 
 /**
  * Настройки времени жизни кеша данных, приоритета страниц, вероятной частоты изменений страницы
- * 
+ *
  * cache_lifetime - время жизни кеша для наборов извлекаемых из БД. значение задается в секундах
  * sitemap_priority - приоритет страницы. значение от 0 до 1
  * sitemap_changefreq - вероятная частота изменений страницы. значения always|hourly|daily|weekly|monthly|yearly|never
