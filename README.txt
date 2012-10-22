@@ -13,6 +13,64 @@
 Более подробную информацию вы можете найти на странице http://sitemaps.org/ru/.
 
 
+КОНФИГУРАЦИЯ NGINX
+-------
+
+server {
+    listen  server_ip:80;
+
+    server_name example.com;
+    client_max_body_size 20M;
+
+    location ~ /.svn/ {
+        deny all;
+    }
+    location ~ /\.ht {
+        deny  all;
+    }
+    location ~ /\.git {
+        deny  all;
+    }
+    location ~ plugins.dat {
+        deny  all;
+    }
+
+    root        /var/www/example.com/www/;
+
+    location / {
+        index       index.html index.htm index.php;
+        try_files   $uri $uri/ @ls;
+    }
+
+    location  /include/cron/ {
+        deny all;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass        unix:/var/run/php5-fpm.sock;
+        fastcgi_index       index.php;
+        fastcgi_param       SCRIPT_FILENAME /var/www/example.com/www/$fastcgi_script_name;
+        include             fastcgi_params;
+    }
+
+    location @ls {
+        fastcgi_pass        unix:/var/run/php5-fpm.sock;
+        fastcgi_param       SCRIPT_FILENAME  /var/www/example.com/www/index.php;
+        fastcgi_param       QUERY_STRING     $uri;
+        include             fastcgi_params;
+    }
+
+    location ~* /uploads/images_original.* {
+        deny all;
+    }
+
+    location ~* ^.+\.(jpg|jpeg|gif|png|ico|zip|tgz|gz|rar|bz2|doc|xls|exe|pdf|ppt|txt|tar|wav|bmp|rtf|htc)$ {
+        expires     31d;
+        add_header  Cache-Control private;
+    }
+}
+
+
 ЛИЦЕНЗИИ
 -------
 
