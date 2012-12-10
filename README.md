@@ -57,26 +57,26 @@ v0.1.0
 Пример конфигурации server для корректной работы с nginx
 -------
 
-server {
-    # ... другие настройки
-
-    location / {
-        index       index.html index.htm index.php;
-        try_files   $uri $uri/ @ls; # для несуществующих файлов
-    }
-
-    location ~ \.php$ {
-        fastcgi_pass        unix:/var/run/php5-fpm.sock;
-        fastcgi_index       index.php;
-        fastcgi_param       SCRIPT_FILENAME /var/www/example.com/www/$fastcgi_script_name;
-        include             fastcgi_params;
-    }
-
-    location @ls {
-        fastcgi_pass        unix:/var/run/php5-fpm.sock;
-        fastcgi_param       SCRIPT_FILENAME  /var/www/example.com/www/index.php;
-        fastcgi_param       QUERY_STRING     $uri;
-        include             fastcgi_params;
-    }
-
-}
+  server {
+      # ... другие настройки
+  
+      location / {
+          index       index.html index.htm index.php;
+          try_files   $uri $uri/ @ls; # для несуществующих файлов
+      }
+  
+      location ~ \.php$ {
+          fastcgi_pass        unix:/var/run/php5-fpm.sock;
+          fastcgi_index       index.php;
+          fastcgi_param       SCRIPT_FILENAME /var/www/example.com/www/$fastcgi_script_name;
+          include             fastcgi_params;
+      }
+  
+      location @ls {
+          fastcgi_pass        unix:/var/run/php5-fpm.sock;
+          fastcgi_param       SCRIPT_FILENAME  /var/www/example.com/www/index.php;
+          fastcgi_param       QUERY_STRING     $uri;
+          include             fastcgi_params;
+      }
+  
+  }
