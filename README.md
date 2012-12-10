@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/stfalcon-studio/ls-plugin_sitemap.png?branch=master)](https://travis-ci.org/stfalcon-studio/ls-plugin_sitemap)
+
 ОПИСАНИЕ
 --------
 
