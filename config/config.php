@@ -12,7 +12,7 @@ Config::Set('router.page.sitemap', 'PluginSitemap_ActionSitemap');
 
 $config = array();
 
-$config['objects_per_page'] = 50000; // максимальное количество ссылок на одной странице карты
+$config['objects_per_page'] = 1000; // максимальное количество ссылок на одной странице карты
 $config['users_per_page']   = 1000;    // максимальное количество пользователей на одной странице карты
 
 /**
