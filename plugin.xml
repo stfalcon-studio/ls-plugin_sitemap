@@ -4,18 +4,16 @@
                 <lang name="default">Sitemap</lang>
         </name>
         <author>
-                <lang name="default">Dmitriy Gadeev, Stepan Tanasiychuk</lang>
-                <lang name="russian">Дмитрий Гадеев, Степан Танасийчук</lang>
-                <lang name="ukrainian">Дмитро Гадєєв, Степан Танасійчук</lang>
+                <lang name="default">stfalcon.com</lang>
         </author>
-        <homepage>http://www.assembla.com/spaces/ls-sitemap/wiki</homepage>
-        <version>0.3.0</version>
+        <homepage>http://stfalcon.com</homepage>
+        <version>0.4.0</version>
         <requires>
-                <livestreet>0.4.2</livestreet>
+                <livestreet>1.0</livestreet>
         </requires>
         <description>
-                <lang name="default">Sitemap generator</lang>
-                <lang name="russian">Sitemap генератор</lang>
-                <lang name="ukrainian">Sitemap генератор</lang>
+                <lang name="default">Generates xml-file with information for search engines. The file is located at http://example.com/sitemap.xml (replace example.com to the url of the site)</lang>
+                <lang name="russian">Генерирует xml-файл с информацией для поисковых систем. Файл находится по адресу http://example.com/sitemap.xml (замените example.com на url своего сайта)</lang>
+                <lang name="ukrainian">Генерує xml-файл з інформацією для пошукових систем. Файл знаходиться за адресою http://example.com/sitemap.xml (замініть example.com на url свого сайту)</lang>
         </description>
 </plugin>
