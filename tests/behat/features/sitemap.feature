@@ -12,8 +12,8 @@ Feature: Greeting plugin standart features BDD
 
         Given I am on "/sitemap_users_1.xml"
             Then the response should contain "/profile/user-golfer/"
-            And the response should contain "/my/user-golfer/comment/"
-            And the response should contain "/my/user-golfer/"
+            And the response should contain "/profile/user-golfer/created/comments/"
+            And the response should contain "/profile/user-golfer/"
 
         Given I am on "/my/user-golfer/"
             Then the response status code should be 200
