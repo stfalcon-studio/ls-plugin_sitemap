@@ -34,12 +34,18 @@ class PluginSitemap_ActionSitemap extends ActionPlugin {
         $iCurrPage = (int) $this->GetParam(1);
         $aType = explode('_', $this->GetParam(0));
         $sName='';
-        foreach ($aType as $val)
+        foreach ($aType as $val) {
             $sName.=ucfirst($val);
-        $aData = call_user_func_array(
-                        array($this, 'PluginSitemap_Sitemap_GetDataFor' . $sName),
-                        array($iCurrPage)
-        );
+        }
+
+        try {
+            $aData = call_user_func_array(
+                array($this, 'PluginSitemap_Sitemap_GetDataFor' . $sName),
+                array($iCurrPage)
+            );
+        } catch (Exception $e) {
+            return $this->EventNotFound();
+        }
 
         $this->_displaySitemap($aData);
     }
