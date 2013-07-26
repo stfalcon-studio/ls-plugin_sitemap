@@ -59,22 +59,29 @@ class PluginSitemap_ModuleUser extends Module {
                 );
 
                 // публикации пользователя
-                $aData[] = $this->PluginSitemap_Sitemap_GetDataForSitemapRow(
+                $iCountTopicUser = $this->Topic_GetCountTopicsPersonalByUser($oUser->getId(), 1);
+
+                if($iCountTopicUser > 0) {
+                    $aData[] = $this->PluginSitemap_Sitemap_GetDataForSitemapRow(
                         $oUser->getUserTopicsWebPath(),
                         // @todo временем изменения страницы публикаций должно быть время последней публикации пользователя
                         null,
                         Config::Get('plugin.sitemap.users.my.sitemap_priority'),
                         Config::Get('plugin.sitemap.users.my.sitemap_changefreq')
-                );
+                    );
+                }
 
                 // комментарии пользователя
-                $aData[] = $this->PluginSitemap_Sitemap_GetDataForSitemapRow(
-                        $oUser->getUserCommentsWebPath(),
-                        $oUser->getDateCommentLast(),
-                        Config::Get('plugin.sitemap.users.comments.sitemap_priority'),
-                        Config::Get('plugin.sitemap.users.comments.sitemap_changefreq')
-                );
+                $iCountCommentUser = $this->Comment_GetCountCommentsByUserId($oUser->getId(),'topic');
 
+                if ($iCountCommentUser > 0) {
+                    $aData[] = $this->PluginSitemap_Sitemap_GetDataForSitemapRow(
+                            $oUser->getUserCommentsWebPath(),
+                            $oUser->getDateCommentLast(),
+                            Config::Get('plugin.sitemap.users.comments.sitemap_priority'),
+                            Config::Get('plugin.sitemap.users.comments.sitemap_changefreq')
+                    );
+                }
                 $this->Cache_Set($aData, $sCacheKey, array('user_new', 'user_update'), Config::Get('plugin.sitemap.users.cache_lifetime'));
             }
         }

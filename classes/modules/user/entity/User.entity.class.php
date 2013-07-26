@@ -17,7 +17,7 @@ class PluginSitemap_ModuleUser_EntityUser extends PluginSitemap_Inherit_ModuleUs
      * @return string
      */
     public function getUserCommentsWebPath() {
-        return Router::GetPath('my') . $this->getLogin() . '/comment/';
+        return $this->getUserWebPath() . 'created/comments/';
     }
 
     /**
@@ -26,7 +26,7 @@ class PluginSitemap_ModuleUser_EntityUser extends PluginSitemap_Inherit_ModuleUs
      * @return string
      */
     public function getUserTopicsWebPath() {
-        return Router::GetPath('my') . $this->getLogin() . '/';
+        return $this->getUserWebPath() . 'created/topics/';
     }
 
 }
