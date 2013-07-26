@@ -48,4 +48,4 @@ Feature: Greeting plugin standart features BDD
             Then the response status code should be 200
 
         Given I am on "/sitemap_wrong_url.xml"
-            Then the response status code should be 40
+            Then the response status code should be 404
