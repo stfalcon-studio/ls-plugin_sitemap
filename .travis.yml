@@ -11,6 +11,7 @@ before_script:
   - cp /tmp/ls/.htaccess ./
   - mkdir -p plugins/sitemap && cp -a /tmp/plugins/sitemap/* plugins/sitemap
   - echo "sitemap" > ./plugins/plugins.dat
+  - cp ./install/*.sql tests/fixtures/sql/
 
   # change application working folders for write access
   - chmod -R 0777 ./tmp
