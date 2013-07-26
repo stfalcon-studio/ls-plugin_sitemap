@@ -6,7 +6,7 @@ php:
 before_script:
   - mkdir -p /tmp/plugins/sitemap
   - mv * /tmp/plugins/sitemap
-  - mkdir /tmp/ls && git clone git://github.com/stfalcon-studio/livestreet.git /tmp/ls
+  - mkdir /tmp/ls && git clone -b upstream git://github.com/stfalcon-studio/livestreet.git /tmp/ls
   - cp -a /tmp/ls/* ./
   - cp /tmp/ls/.htaccess ./
   - mkdir -p plugins/sitemap && cp -a /tmp/plugins/sitemap/* plugins/sitemap
