@@ -12,8 +12,11 @@ Feature: Greeting plugin standart features BDD
 
         Given I am on "/sitemap_users_1.xml"
             Then the response should contain "/profile/user-golfer/"
-            And the response should contain "/my/user-golfer/comment/"
-            And the response should contain "/my/user-golfer/"
+            And the response should contain "/profile/user-golfer/created/comments/"
+            And the response should contain "/profile/user-golfer/created/topics/"
+            And the response should contain "/profile/user-friend/"
+            And the response should not contain "/profile/user-friend/created/comments/"
+            And the response should not contain "/profile/user-friend/created/topics/"
 
         Given I am on "/my/user-golfer/"
             Then the response status code should be 200
@@ -48,4 +51,4 @@ Feature: Greeting plugin standart features BDD
             Then the response status code should be 200
 
         Given I am on "/sitemap_wrong_url.xml"
-            Then the response status code should be 404
+        Then the response status code should be 404
